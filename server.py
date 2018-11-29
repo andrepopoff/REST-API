@@ -75,14 +75,14 @@ class UserController(object):
         except KeyError:
             raise HTTPError(404, 'user({}) is not found'.format(id_str))
 
-    def delete(self, id_):
+    def delete(self, id_str):
         """
         Deletes users by id
         """
         try:
-            del self.users[id_]
+            del self.users[self.__user_id_from_str(id_str)]
         except KeyError:
-            raise HTTPError(404, 'user({}) is not found'.format(id_))
+            raise HTTPError(404, 'user({}) is not found'.format(id_str))
 
     def update(self, id_str, data):
         """
