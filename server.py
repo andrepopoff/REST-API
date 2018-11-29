@@ -69,11 +69,11 @@ class UserController(object):
 
         return users_refs
 
-    def get(self, id_):
+    def get(self, id_str):
         try:
-            return self.users[id_]
+            return self.users[self.__user_id_from_str(id_str)]
         except KeyError:
-            raise HTTPError(404, 'user({}) is not found'.format(id_))
+            raise HTTPError(404, 'user({}) is not found'.format(id_str))
 
     def delete(self, id_):
         """
