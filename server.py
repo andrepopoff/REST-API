@@ -123,6 +123,14 @@ class HTTPHandler(BaseHTTPRequestHandler):
         body = self.rfile.read(number_of_bytes)
         return json.loads(body, encoding='utf-8')
 
+    def process_request_with_body(self, status, handler):
+        try:
+            data = self.get_data()
+        except Exception as e:
+            raise HTTPError(400, str(e))
+
+        return handler(data)
+
     def process_request(self, handler):
         """
         Gets data from handler and writes as response
