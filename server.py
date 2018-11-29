@@ -1,3 +1,9 @@
+class HTTPError(Exception):
+    def __init__(self, code, reason):
+        super(HTTPError, self).__init__(reason)
+        self.code = code
+
+
 class User(object):
     __slots__ = ('id_', 'name', 'email', 'age', 'sex')
 
@@ -58,4 +64,3 @@ class UserController(object):
             del self.users[id_]
         except KeyError:
             pass
-        
