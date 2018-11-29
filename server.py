@@ -16,4 +16,9 @@ class UserRef(object):
         self.id_ = id_
         self.name = name
         self.url = url
-        
+
+
+class UserController(object):
+    def __init__(self):
+        self.users = {}
+        self.last_id = 0
