@@ -36,6 +36,12 @@ class UserController(object):
         self.users = {}
         self.last_id = 0
 
+    def __user_id_from_str(self, id_str):
+        try:
+            return int(id_str)
+        except ValueError:
+            raise HTTPError(404, 'user with id {} is not found'.format(id_str))
+
     def create(self, data):
         """
         Creates a new user
