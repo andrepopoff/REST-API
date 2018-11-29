@@ -99,13 +99,15 @@ class HTTPHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         if self.path == '/users/':
-            self.process_request(self.controller.list)
+            return self.process_request(self.controller.list)
 
         if self.path.startswith('/users/'):
             parts = self.path.split('/', 4)
             if len(parts) == 3:
                 user_id = parts[2]
-                self.process_request(functools.partial(self.controller.get, user_id))
+                return self.process_request(functools.partial(self.controller.get, user_id))
+
+        self.write_response(404, {'error': 'not found'})
 
     def process_request(self, handler):
         """
