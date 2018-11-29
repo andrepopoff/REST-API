@@ -107,6 +107,22 @@ class HTTPHandler(BaseHTTPRequestHandler):
                 user = self.controller.get(user_id)
                 self.write_response(200, user)
 
+    def process_handler(self, handler):
+        """
+        Gets data from handler and writes as response
+        """
+        try:
+            data = handler()
+            status = 200
+        except HTTPError as e:
+            data = {'error': str(e)}
+            status = e.code
+        except Exception as e:
+            data = {'error': str(e)}
+            status = 500
+
+        self.write_response(status, data)
+
     def write_response(self, status, data):
         """
         Formats response as json and writes
