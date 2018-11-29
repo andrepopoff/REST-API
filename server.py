@@ -63,4 +63,4 @@ class UserController(object):
         try:
             del self.users[id_]
         except KeyError:
-            pass
+            raise HTTPError(404, 'user({}) is not found'.format(id_))
