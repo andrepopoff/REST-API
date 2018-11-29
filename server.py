@@ -84,8 +84,11 @@ class UserController(object):
         except KeyError:
             raise HTTPError(404, 'user({}) is not found'.format(id_))
 
-    def update(self, id_, data):
-        user = self.get(id_)
+    def update(self, id_str, data):
+        """
+        Updates user by id
+        """
+        user = self.get(id_str)
         user.update(**data)
 
 
