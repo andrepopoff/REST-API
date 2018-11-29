@@ -12,10 +12,10 @@ class User(object):
 class UserRef(object):
     __slots__ = ('id_', 'name', 'url')
 
-    def __init__(self, id_, name, url):
-        self.id_ = id_
-        self.name = name
-        self.url = url
+    def __init__(self, user):
+        self.id_ = user.id_
+        self.name = user.name
+        self.url = '/users/{}'.format(user.id_)
 
 
 class UserController(object):
