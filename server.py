@@ -14,6 +14,12 @@ class User(object):
         self.age = age
         self.sex = sex
 
+    def update(self, name, email, age, sex):
+        self.name = name
+        self.email = email
+        self.age = age
+        self.sex = sex
+
 
 class UserRef(object):
     __slots__ = ('id_', 'name', 'url')
