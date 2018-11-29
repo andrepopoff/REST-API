@@ -109,6 +109,10 @@ class HTTPHandler(BaseHTTPRequestHandler):
 
         self.write_response(404, {'error': 'not found'})
 
+    def do_POST(self):
+        if self.path == '/users/':
+            return self.process_request(self.controller.list)
+
     def process_request(self, handler):
         """
         Gets data from handler and writes as response
