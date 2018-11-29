@@ -33,4 +33,9 @@ class UserController(object):
 
         user = User(**data)
         self.users[id_] = user
-    
+
+    def list(self):
+        """
+        Get list of users (sorted by id)
+        """
+        users_ids = sorted(self.users)
