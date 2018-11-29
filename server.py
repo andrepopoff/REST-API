@@ -46,3 +46,7 @@ class UserController(object):
                 users_refs.append(self.users[id_])
             except KeyError:
                 pass
+
+    def delete(self, id_):
+        pass
+    
