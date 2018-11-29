@@ -1,4 +1,6 @@
 import json
+import functools
+
 from http.server import BaseHTTPRequestHandler
 
 
@@ -97,15 +99,13 @@ class HTTPHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         if self.path == '/users/':
-            users = self.controller.list()
-            self.write_response(200, users)
+            self.process_request(self.controller.list)
 
         if self.path.startswith('/users/'):
             parts = self.path.split('/', 4)
             if len(parts) == 3:
                 user_id = parts[2]
-                user = self.controller.get(user_id)
-                self.write_response(200, user)
+                self.process_request(functools.partial(self.controller.get, user_id))
 
     def process_request(self, handler):
         """
