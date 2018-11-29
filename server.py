@@ -51,4 +51,11 @@ class UserController(object):
         return users_refs
 
     def delete(self, id_):
-        pass
+        """
+        Deletes users by id
+        """
+        try:
+            del self.users[id_]
+        except KeyError:
+            pass
+        
