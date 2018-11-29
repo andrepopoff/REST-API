@@ -103,11 +103,9 @@ class HTTPHandler(BaseHTTPRequestHandler):
         if self.path.startswith('/users/'):
             parts = self.path.split('/', 4)
             if len(parts) == 3:
-                try:
-                    user_id = int(parts[2])
-                except ValueError:
-                    self.write_response(404, {'error': 'user is not found'})
-                # self.controller.get(user_id)
+                user_id = parts[2]
+                user = self.controller.get(user_id)
+                self.write_response(200, user)
 
     def write_response(self, status, data):
         """
