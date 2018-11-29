@@ -7,12 +7,9 @@ class HTTPError(Exception):
 class User(object):
     __slots__ = ('id_', 'name', 'email', 'age', 'sex')
 
-    def __init__(self, id_, name, email, age, sex):
+    def __init__(self, id_, **kwargs):
         self.id_ = id_
-        self.name = name
-        self.email = email
-        self.age = age
-        self.sex = sex
+        self.update(**kwargs)
 
     def update(self, name, email, age, sex):
         self.name = name
