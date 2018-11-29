@@ -41,12 +41,14 @@ class UserController(object):
         """
         users_ids = sorted(self.users)
         users_refs = []
+
         for id_ in users_ids:
             try:
                 users_refs.append(self.users[id_])
             except KeyError:
                 pass
 
+        return users_refs
+
     def delete(self, id_):
         pass
-    
