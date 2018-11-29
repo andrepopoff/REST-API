@@ -40,3 +40,9 @@ class UserController(object):
         Get list of users (sorted by id)
         """
         users_ids = sorted(self.users)
+        users_refs = []
+        for id_ in users_ids:
+            try:
+                users_refs.append(self.users[id_])
+            except KeyError:
+                pass
