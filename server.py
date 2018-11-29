@@ -1,3 +1,6 @@
+from http.server import BaseHTTPRequestHandler
+
+
 class HTTPError(Exception):
     def __init__(self, code, reason):
         super(HTTPError, self).__init__(reason)
