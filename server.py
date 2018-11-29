@@ -79,3 +79,14 @@ class UserController(object):
             raise HTTPError(404, 'user({}) is not found'.format(id_))
         except (ValueError, TypeError) as e:
             raise HTTPError(400, str(e))
+
+
+class HTTPHandler(BaseHTTPRequestHandler):
+    controller = UserController()
+
+    def do_GET(self):
+        if self.patch == '/users/':
+            users = self.controller.list()
+
+        pass
+
