@@ -107,7 +107,7 @@ class HTTPHandler(BaseHTTPRequestHandler):
                 user = self.controller.get(user_id)
                 self.write_response(200, user)
 
-    def process_handler(self, handler):
+    def process_request(self, handler):
         """
         Gets data from handler and writes as response
         """
