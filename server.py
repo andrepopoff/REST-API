@@ -123,7 +123,7 @@ class HTTPHandler(BaseHTTPRequestHandler):
         body = self.rfile.read(number_of_bytes)
         return json.loads(body, encoding='utf-8')
 
-    def process_request_with_body(self, status, handler):
+    def call_with_body(self, handler):
         try:
             data = self.get_data()
         except Exception as e:
