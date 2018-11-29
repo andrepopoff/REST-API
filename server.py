@@ -1,3 +1,4 @@
+import json
 from http.server import BaseHTTPRequestHandler
 
 
@@ -89,4 +90,15 @@ class HTTPHandler(BaseHTTPRequestHandler):
             users = self.controller.list()
 
         pass
+
+    def write_response(self, status, data):
+        """
+        Formats response as json and writes
+        """
+        body = json.dumps(data).encode('utf-8')
+        self.send_response(status)
+        self.headers['Content-Type'] = 'application/json; charset=utf-8'
+        self.headers['Content-Length'] = len(data)
+        self.end_headers()
+        self.wfile.write(body)
 
