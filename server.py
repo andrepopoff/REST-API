@@ -33,6 +33,7 @@ class UserController(object):
 
         user = User(**data)
         self.users[id_] = user
+        return UserRef(user)
 
     def list(self):
         """
