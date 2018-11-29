@@ -64,3 +64,12 @@ class UserController(object):
             del self.users[id_]
         except KeyError:
             raise HTTPError(404, 'user({}) is not found'.format(id_))
+
+    def update(self, id_, data):
+        try:
+            user = self.users[id_]
+            user.update(**data)
+        except KeyError:
+            raise HTTPError(404, 'user({}) is not found'.format(id_))
+        except (ValueError, TypeError) as e:
+            raise HTTPError(400, str(e))
