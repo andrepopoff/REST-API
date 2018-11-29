@@ -63,6 +63,12 @@ class UserController(object):
 
         return users_refs
 
+    def get(self, id_):
+        try:
+            return self.users[id_]
+        except KeyError:
+            raise HTTPError(404, 'user({}) is not found'.format(id_))
+
     def delete(self, id_):
         """
         Deletes users by id
@@ -86,8 +92,14 @@ class HTTPHandler(BaseHTTPRequestHandler):
     controller = UserController()
 
     def do_GET(self):
-        if self.patch == '/users/':
+        if self.path == '/users/':
             users = self.controller.list()
+            self.write_response(200, users)
+
+        if self.path.startswith('/users/'):
+            parts = self.path.split('/', 4)
+            if len(parts) == 3:
+                user_id = parts[2]
 
         pass
 
