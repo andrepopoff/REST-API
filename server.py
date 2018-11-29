@@ -111,7 +111,13 @@ class HTTPHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         if self.path == '/users/':
-            return self.process_request(self.controller.list)
+            return self.process_request(self.controller.create)
+
+    def get_data(self):
+        """
+        Gets request params from body
+        """
+        pass
 
     def process_request(self, handler):
         """
