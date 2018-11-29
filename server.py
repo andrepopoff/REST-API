@@ -22,3 +22,15 @@ class UserController(object):
     def __init__(self):
         self.users = {}
         self.last_id = 0
+
+    def create(self, data):
+        """
+        Creates a new user
+        """
+        id_ = self.last_id
+        self.last_id += 1
+        data['id_'] = id_
+
+        user = User(**data)
+        self.users[id_] = user
+    
