@@ -131,13 +131,12 @@ class HTTPHandler(BaseHTTPRequestHandler):
 
         return handler(data)
 
-    def process_request(self, handler):
+    def process_request(self, status, handler):
         """
         Gets data from handler and writes as response
         """
         try:
             data = handler()
-            status = 200
         except HTTPError as e:
             data = {'error': str(e)}
             status = e.code
