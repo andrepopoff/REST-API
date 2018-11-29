@@ -117,7 +117,11 @@ class HTTPHandler(BaseHTTPRequestHandler):
         """
         Gets request params from body
         """
-        pass
+        if self.headers['Content-Type'].startswith('application/json'):
+            raise HTTPError(415, 'expected application/json')
+        number_of_bytes = int(self.headers['Content-Length'])
+        body = self.rfile.read(number_of_bytes)
+        return json.loads(body, encoding='utf-8')
 
     def process_request(self, handler):
         """
