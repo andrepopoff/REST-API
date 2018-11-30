@@ -45,7 +45,7 @@ class UserRef(JsonSerializable):
 class UserController(object):
     def __init__(self):
         self.users = {}
-        self.last_id = 0
+        self.last_id = 1
 
     def __user_id_from_str(self, id_str):
         try:
