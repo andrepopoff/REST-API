@@ -31,9 +31,9 @@ class UserRef(object):
     __slots__ = ('id', 'name', 'url')
 
     def __init__(self, user):
-        self.id = user.id_
+        self.id = user.id
         self.name = user.name
-        self.url = '/users/{}'.format(user.id_)
+        self.url = '/users/{}'.format(user.id)
 
 
 class UserController(object):
