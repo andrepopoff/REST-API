@@ -11,10 +11,10 @@ class HTTPError(Exception):
 
 
 class User(object):
-    __slots__ = ('id_', 'name', 'email', 'age', 'sex')
+    __slots__ = ('id', 'name', 'email', 'age', 'sex')
 
     def __init__(self, id_, **kwargs):
-        self.id_ = id_
+        self.id = id_
         self.update(**kwargs)
 
     def update(self, name, email, age, sex):
@@ -22,6 +22,9 @@ class User(object):
         self.email = email
         self.age = age
         self.sex = sex
+
+    def toDict(self):
+        return {k: getattr(self, k) for k in self.__slots__}
 
 
 class UserRef(object):
@@ -188,3 +191,6 @@ def main():
     server = HTTPServer(server_address, HTTPHandler)
     server.serve_forever()
 
+
+if __name__ == '__main__':
+    main()
