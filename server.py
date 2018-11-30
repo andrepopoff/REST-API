@@ -114,6 +114,12 @@ class HTTPHandler(BaseHTTPRequestHandler):
             self.process_request(functools.partial(self.call_with_body, self.controller.create))
         self.not_found()
 
+    def get_user_id(self):
+        parts = self.path.split('/', 4)
+        if len(parts) == 3:
+            return parts[2]
+        return None
+
     def get_data(self):
         """
         Gets request params from body
