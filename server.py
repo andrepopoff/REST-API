@@ -114,6 +114,14 @@ class HTTPHandler(BaseHTTPRequestHandler):
             self.process_request(functools.partial(self.call_with_body, self.controller.create))
         self.not_found()
 
+    def do_PUT(self):
+        user_id = self.get_user_id()
+        if user_id is not None:
+            update_user = functools.partial(self.controller.update, user_id)
+            self.process_request(functools.partial(self.call_with_body, update_user))
+
+        self.not_found()
+
     def get_user_id(self):
         if self.path.startswith('/users/'):
             parts = self.path.split('/', 4)
