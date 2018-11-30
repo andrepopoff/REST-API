@@ -157,3 +157,6 @@ class HTTPHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def not_found(self):
+        self.write_response(404, {'error': 'not found'})
+
