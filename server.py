@@ -15,7 +15,7 @@ class JsonSerializable(object):
         return {k: getattr(self, k) for k in self.__slots__}
 
 
-class User(object):
+class User(JsonSerializable):
     __slots__ = ('id', 'name', 'email', 'age', 'sex')
 
     def __init__(self, id_, **kwargs):
@@ -28,20 +28,14 @@ class User(object):
         self.age = age
         self.sex = sex
 
-    def toDict(self):
-        return {k: getattr(self, k) for k in self.__slots__}
 
-
-class UserRef(object):
+class UserRef(JsonSerializable):
     __slots__ = ('id', 'name', 'url')
 
     def __init__(self, user):
         self.id = user.id
         self.name = user.name
         self.url = '/users/{}'.format(user.id)
-
-    def toDict(self):
-        return {k: getattr(self, k) for k in self.__slots__}
 
 
 class UserController(object):
