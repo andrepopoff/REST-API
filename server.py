@@ -125,7 +125,9 @@ class HTTPHandler(BaseHTTPRequestHandler):
     def do_DELETE(self):
         user_id = self.get_user_id()
         if user_id is not None:
-            self.process_request(functools.partial(self.controller.update, user_id))
+            self.process_request(200, functools.partial(self.controller.update, user_id))
+
+        self.not_found()
 
     def get_user_id(self):
         if self.path.startswith('/users/'):
