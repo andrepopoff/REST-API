@@ -107,7 +107,7 @@ class HTTPHandler(BaseHTTPRequestHandler):
                 user_id = parts[2]
                 return self.process_request(functools.partial(self.controller.get, user_id))
 
-        self.write_response(404, {'error': 'not found'})
+        self.not_found()
 
     def do_POST(self):
         if self.path == '/users/':
