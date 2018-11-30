@@ -28,10 +28,10 @@ class User(object):
 
 
 class UserRef(object):
-    __slots__ = ('id_', 'name', 'url')
+    __slots__ = ('id', 'name', 'url')
 
     def __init__(self, user):
-        self.id_ = user.id_
+        self.id = user.id_
         self.name = user.name
         self.url = '/users/{}'.format(user.id_)
 
