@@ -148,7 +148,7 @@ class HTTPHandler(BaseHTTPRequestHandler):
         """
         Gets request params from body
         """
-        if self.headers['Content-Type'].startswith('application/json'):
+        if not self.headers['Content-Type'].startswith('application/json'):
             raise HTTPError(415, 'expected application/json')
         number_of_bytes = int(self.headers['Content-Length'])
         body = self.rfile.read(number_of_bytes)
