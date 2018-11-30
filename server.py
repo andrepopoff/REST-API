@@ -47,7 +47,8 @@ class UserController(object):
         self.users = {}
         self.last_id = 1
 
-    def __user_id_from_str(self, id_str):
+    @staticmethod
+    def __user_id_from_str(id_str):
         try:
             return int(id_str)
         except ValueError:
