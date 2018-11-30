@@ -115,10 +115,10 @@ class HTTPHandler(BaseHTTPRequestHandler):
         self.not_found()
 
     def get_user_id(self):
-        parts = self.path.split('/', 4)
-        if len(parts) == 3:
-            return parts[2]
-        return None
+        if self.path.startswith('/users/'):
+            parts = self.path.split('/', 4)
+            if len(parts) == 3:
+                return parts[2]
 
     def get_data(self):
         """
