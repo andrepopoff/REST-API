@@ -35,6 +35,9 @@ class UserRef(object):
         self.name = user.name
         self.url = '/users/{}'.format(user.id)
 
+    def toDict(self):
+        return {k: getattr(self, k) for k in self.__slots__}
+
 
 class UserController(object):
     def __init__(self):
