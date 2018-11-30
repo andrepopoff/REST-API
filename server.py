@@ -105,7 +105,7 @@ class HTTPHandler(BaseHTTPRequestHandler):
             parts = self.path.split('/', 4)
             if len(parts) == 3:
                 user_id = parts[2]
-                return self.process_request(functools.partial(self.controller.get, user_id))
+                return self.process_request(200, functools.partial(self.controller.get, user_id))
 
         self.not_found()
 
