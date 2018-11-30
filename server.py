@@ -108,7 +108,7 @@ class HTTPHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         if self.path == '/users/':
-            return self.process_request(self.controller.list)
+            return self.process_request(200, self.controller.list)
 
         if self.path.startswith('/users/'):
             parts = self.path.split('/', 4)
