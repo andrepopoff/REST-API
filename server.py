@@ -1,7 +1,7 @@
 import json
 import functools
 
-from http.server import BaseHTTPRequestHandler
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 
 class HTTPError(Exception):
@@ -181,4 +181,10 @@ class HTTPHandler(BaseHTTPRequestHandler):
 
     def not_found(self):
         self.write_response(404, {'error': 'not found'})
+
+
+def main():
+    server_address = ('127.0.0.1', '8080')
+    server = HTTPServer(server_address, HTTPHandler)
+    server.serve_forever()
 
