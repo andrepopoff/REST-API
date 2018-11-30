@@ -118,7 +118,7 @@ class HTTPHandler(BaseHTTPRequestHandler):
         user_id = self.get_user_id()
         if user_id is not None:
             update_user = functools.partial(self.controller.update, user_id)
-            self.process_request(functools.partial(self.call_with_body, update_user))
+            self.process_request(200, functools.partial(self.call_with_body, update_user))
 
         self.not_found()
 
