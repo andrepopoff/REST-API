@@ -181,6 +181,17 @@ class HTTPHandler(BaseHTTPRequestHandler):
         """
         Formats response as json and writes
         """
+        if isinstance(data, list):
+            result = []
+            for v in data:
+                if not isinstance(v, dict):
+                    result.append(v.toDict())
+                else:
+                    result.append(v)
+            data = result
+        elif not isinstance(data, dict):
+            data = data.toDict()
+
         body = json.dumps(data, sort_keys=True, indent=4).encode('utf-8')
         self.send_response(status)
         self.headers['Content-Type'] = 'application/json; charset=utf-8'
