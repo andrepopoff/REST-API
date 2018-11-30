@@ -11,6 +11,10 @@ class HTTPError(Exception):
 
 
 class JsonSerializable(object):
+    """
+    Implements method toDict to convert class to dict.
+    Inherited class should use __slots__
+    """
     def toDict(self):
         return {k: getattr(self, k) for k in self.__slots__}
 
