@@ -10,6 +10,11 @@ class HTTPError(Exception):
         self.code = code
 
 
+class JsonSerializable(object):
+    def toDict(self):
+        return {k: getattr(self, k) for k in self.__slots__}
+
+
 class User(object):
     __slots__ = ('id', 'name', 'email', 'age', 'sex')
 
